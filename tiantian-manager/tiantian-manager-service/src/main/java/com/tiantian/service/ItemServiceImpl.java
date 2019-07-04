@@ -5,10 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
+import com.tiantian.common.pojo.EasyUIDataGridResult;
 import com.tiantian.mapper.TbItemMapper;
 import com.tiantian.pojo.TbItem;
 import com.tiantian.pojo.TbItemExample;
-import com.tiantian.pojo.TbItemExample.Criteria;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -36,5 +38,22 @@ public class ItemServiceImpl implements ItemService {
         }*/
         return item;
     }
+
+    @Override
+    public EasyUIDataGridResult getItemList(Integer page, Integer rows) {
+        //1.设置分页
+        PageHelper.startPage(page, rows);
+        //2.查询
+        TbItemExample example = new TbItemExample();
+        List<TbItem> list = itemMapper.selectByExample(example);
+        //3.获取分页结果
+        PageInfo<TbItem> info = new PageInfo<>(list);
+        //4.设置pojo
+        EasyUIDataGridResult result = new EasyUIDataGridResult();
+        result.setTotal(info.getTotal());
+        result.setRows(list);
+        return result;
+    }
+
 
 }

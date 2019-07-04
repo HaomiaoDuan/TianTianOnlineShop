@@ -6,8 +6,10 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.tiantian.common.pojo.EasyUIDataGridResult;
 import com.tiantian.mapper.TbItemMapper;
 import com.tiantian.pojo.TbItem;
+import com.tiantian.service.ItemService;
 
 /**
  * 商品管理
@@ -18,12 +20,20 @@ import com.tiantian.pojo.TbItem;
 public class ItemController {
 
     @Autowired
-    private TbItemMapper mapper;
+    private ItemService service;
     
     @RequestMapping("/item/{itemId}")
     @ResponseBody
     private TbItem getItemById(@PathVariable Long itemId){
-        return mapper.selectByPrimaryKey(itemId);
+        return service.getItemById(itemId);
     }
+    
+    @RequestMapping("/rest/item")
+    @ResponseBody
+    public EasyUIDataGridResult getItemList(Integer page,Integer rows ){
+        EasyUIDataGridResult result = service.getItemList(page, rows);
+        return result;
+    }
+    
     
 }
