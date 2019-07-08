@@ -65,9 +65,13 @@
 </div>
 <script type="text/javascript">
 	var itemAddEditor ;
+	//页面初始化后 执行此方法
 	$(function(){
+		//创建富文本编辑器 --选择<textarea>来创建
 		itemAddEditor = TAOTAO.createEditor("#itemAddForm [name=desc]");
+		//初始化类目选择和图片上传组件
 		TAOTAO.init({fun:function(node){
+			//根据商品的分类id取商品的规格模板，生成规格信息。
 			TAOTAO.changeItemParam(node, "itemAddForm");
 		}});
 	});
@@ -82,6 +86,7 @@
 		//将编辑器中的内容同步到隐藏多行文本中
 		itemAddEditor.sync();
 		
+		//取商品的规格
 		//输入的规格参数数据保存为json
 		var paramJson = [];
 		$("#itemAddForm .params li").each(function(i,e){
@@ -115,7 +120,7 @@
 		//提交到后台的RESTful
 		$.ajax({
 		   type: "POST",
-		   url: "/rest/item",
+		   url: "/item/save",
 		   data: $("#itemAddForm").serialize(),
 		   success: function(msg){
 			   $.messager.alert('提示','新增商品成功!');
