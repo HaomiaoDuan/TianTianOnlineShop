@@ -11,23 +11,7 @@
 	<!-- 加载配置文件 -->
 	<context:property-placeholder location="classpath:properties/*.properties"/>
 	
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
-		<property name="url" value="${jdbc.url}" />
-		<property name="username" value="${jdbc.username}" />
-		<property name="password" value="${jdbc.password}" />
-		<property name="driverClassName" value="${jdbc.driver}" />
-		<property name="maxActive" value="10" />
-		<property name="minIdle" value="5" />
-	</bean>
+	<!-- 扫描包 ，用于service层的注解配置-->
+	<context:component-scan base-package="com.tiantian.portal.service"></context:component-scan>
 	
-	<!-- sql工厂 -->
-	<bean id="sqlSessionFactoryBean" class="org.mybatis.spring.SqlSessionFactoryBean">
-		<property name="dataSource" ref="dataSource"></property>
-		<property name="configLocation" value="classpath:mybatis/sqlMapConfig.xml"></property>
-	</bean>
-	
-	<!-- mybatis动态代理：扫描 -->
-	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-		<property name="basePackage" value="com.tiantian.mapper"></property>
-	</bean>
 </beans>
