@@ -65,6 +65,12 @@
 		<version>${jsp-api.version}</version>
 		<scope>provided</scope>
 	</dependency>
+	<!-- 单元测试 -->
+	<dependency>
+		<groupId>junit</groupId>
+		<artifactId>junit</artifactId>
+		<scope>test</scope>
+	</dependency>
   </dependencies>
   <!-- 要在聚合的工程中添加tomcat插件 -->
 	<build>

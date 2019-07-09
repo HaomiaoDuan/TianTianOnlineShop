@@ -12,7 +12,7 @@
 <script type="text/javascript">
 $(function(){
 	$("#contentCategory").tree({
-		url : '/rest/content/category',
+		url : '/rest/content/category/list',
 		animate: true,
 		method : "GET",
 		onContextMenu: function(e,node){
@@ -27,16 +27,20 @@ $(function(){
         	var _tree = $(this);
         	if(node.id == 0){
         		// 新增节点
-        		$.post("/rest/content/category",{parentId:node.parentId,name:node.text},function(data){
-        			_tree.tree("update",{
-        				target : node.target,
-        				id : data.id
-        			});
+        		$.post("/rest/content/category/create",{parentId:node.parentId,name:node.text},function(data){
+        			if(data.status == 200){
+	        			_tree.tree("update",{
+	        				target : node.target,
+	        				id : data.data
+	        			});
+        			}else{
+        				$.messager.alert('提示','创建' + node.text + '分类失败!');
+        			}
         		});
         	}else{
         		$.ajax({
         			   type: "PUT",
-        			   url: "/rest/content/category",
+        			   url: "/rest/content/category/update",
         			   data: {id:node.id,name:node.text},
         			   success: function(msg){
         				   //$.messager.alert('提示','新增商品成功!');
@@ -70,7 +74,7 @@ function menuHandler(item){
 			if(r){
 				$.ajax({
      			   type: "POST",
-     			   url: "/rest/content/category",
+     			   url: "/rest/content/category/delete",
      			   data : {parentId:node.parentId,id:node.id,"_method":"DELETE"},
      			   success: function(msg){
      				   //$.messager.alert('提示','新增商品成功!');

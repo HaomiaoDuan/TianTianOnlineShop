@@ -35,7 +35,7 @@
                 <when test="criterion.listValue" >
                   and ${criterion.condition}
                   <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
+                    	#{listItem}
                   </foreach>
                 </when>
               </choose>
