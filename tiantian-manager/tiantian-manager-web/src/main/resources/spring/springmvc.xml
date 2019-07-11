@@ -34,5 +34,7 @@
 		<property name="maxUploadSize" value="5242880"></property>
 	</bean>
 	
+	<!-- 加载配置文件 -->
+	<context:property-placeholder location="classpath:properties/*.properties"/>
 	
 </beans>

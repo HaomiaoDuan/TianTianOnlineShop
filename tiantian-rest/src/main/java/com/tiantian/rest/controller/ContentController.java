@@ -32,4 +32,16 @@ public class ContentController {
             return TiantianResult.build(500, msg);
         }
     }
+    
+    @RequestMapping("/sync/content/{cid}")
+    @ResponseBody
+    public TiantianResult syncContent(@PathVariable Long cid){
+        //Controller处理异常
+        try {
+            return contentService.syncContent(cid);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return TiantianResult.build(500, ExceptionUtils.getStackTrace(e));
+        }
+    }
 }
