@@ -9,7 +9,7 @@
 	http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd">
 	
 	<!-- 扫描包 ，用于service层的注解配置-->
-	<context:component-scan base-package="com.tiantian.search.service"></context:component-scan>
+	<context:component-scan base-package="com.tiantian.search.service,com.tiantian.search.dao"></context:component-scan>
 	
 	<!-- 使用solr仅仅是查，不需要修改，所以就不配事务了 -->
  </beans>
