@@ -71,6 +71,10 @@
 		<artifactId>junit</artifactId>
 		<scope>test</scope>
 	</dependency>
+	<dependency>
+		<groupId>org.freemarker</groupId>
+		<artifactId>freemarker</artifactId>
+	</dependency>
   </dependencies>
   <!-- 要在聚合的工程中添加tomcat插件 -->
 	<build>
