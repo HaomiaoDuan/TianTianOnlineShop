@@ -33,6 +33,9 @@ public class LoginInterceptor implements HandlerInterceptor {
                     response.sendRedirect(SSO_LOGIN_URL + "?redirectURL=" + request.getRequestURL());
                     return false;
             }
+            //订单提交，要用到用户信息
+            request.setAttribute("user", user);
+            
             // 6、如果没有过期，放行。
             return true;
     }

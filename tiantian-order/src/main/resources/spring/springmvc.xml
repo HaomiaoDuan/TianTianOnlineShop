@@ -7,26 +7,12 @@
         http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
 
-	<context:property-placeholder location="classpath:properties/*.properties"/>
-	
 	<!-- Controller包扫描器 -->
-	<context:component-scan base-package="com.tiantian.portal.controller"></context:component-scan>
+	<context:component-scan base-package="com.tiantian.order.controller"></context:component-scan>
 
 	<!-- 三大组件 --> 
 	<mvc:annotation-driven />
 	
-	<!-- 视图解析器 -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/jsp/" />
-		<property name="suffix" value=".jsp" />
-	</bean>
+	<!-- 不需要jsp展示 -->
 	
-	<!-- 拦截器 -->
-	<mvc:interceptors>
-		<mvc:interceptor>
-			<!-- <mvc:mapping path="/item/**"/> -->
-			<mvc:mapping path="/order/**"/>
-			<bean class="com.tiantian.portal.LoginInterceptor"/>
-		</mvc:interceptor>
-	</mvc:interceptors>
 </beans>
